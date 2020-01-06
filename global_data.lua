@@ -12,11 +12,13 @@ description = General include with tools
 return {
     helpers = {
         --[[ 
-        function notif_telegram
-        shortcut to send notification to telegram
-            @dz       : self reference to object domoticz in main function
-            @message  : your message
-            @priority : priority (optional)
+        Function notif_telegram: Shortcut to send notification to telegram
+        
+        @dz       : self reference to object domoticz in main function
+        @message  : your message
+        @priority : priority (optional)
+        
+        Example : domoticz.helpers.notif_telegram(..., ..., [...])
         --]]
         notif_telegram = function (dz, message, priority)
             dz.notify(message, message, priority or dz.PRIORITY_NORMAL, nil, nil, dz.NSS_TELEGRAM)

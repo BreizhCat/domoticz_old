@@ -1,11 +1,11 @@
 --[[ 
-author = BreizhCat
-create = 02.01.2020
-update = 02.01.2020
+author   = BreizhCat
+create   = 02.01.2020
+update   = 02.01.2020
 filename = entryDoor.lua
-repo   = 
+repo     = https://github.com/BreizhCat/domoticz/blob/master/entryDoor.lua 
 
-description =
+description = When the alarm is set on, the notification is send to telegram 
 
 --]]
 

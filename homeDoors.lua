@@ -10,7 +10,7 @@ description = When the alarm is set on, the notification is send to telegram
 --]]
 
 local __script_name__ = "homeDoors"
-local __version__     = "1.2"
+local __version__     = "1.3"
 
 return {
 	on = {
@@ -32,6 +32,8 @@ return {
 	        local doorIcon = '\xF0\x9F\x9A\xAA '
 	        local device_found = false
 	        
+	        dz.log('Prepare Message', dz.LOG_DEBUG)
+	        
 	        for i, id in ipairs(group) do
 	            if id == device.id then
 	                device_found = true
@@ -48,6 +50,7 @@ return {
                     -- Previous state = Open
                     message = doorIcon..device.name..' is closed after '..device.lastUpdate.secondsAgo..' seconds'
                 end
+                dz.log(message, dz.LOG_DEBUG)
                 dz.helpers.notif_telegram(dz, message) 
             end
 	    end
@@ -58,8 +61,11 @@ return {
 	    local device_none = { 82 }
 
         if device.changed then
-            local isAlarmed = dz.devices(75)._state
-
+            local isAlarmed = dz.devices(75).state
+                
+            dz.log('Door: '..device.name .. ' is '..device._state, dz.LOG_DEBUG)
+            dz.log('Alarm is '..isAlarmed..'/'..dz.SECURITY_ARMEDAWAY, dz.LOG_DEBUG)
+           
             if isAlarmed == dz.SECURITY_DISARMED then
                 sendStatusNotification(device, device_none)
             end
